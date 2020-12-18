@@ -34,6 +34,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -43,6 +44,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Chronometer mChronometer;
     private Button mStop;
     private MapsViewModel mapsViewModel;
+    private int h;
+    private int m;
+    private int s;
+    public static String t = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +71,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         mChronometer = findViewById(R.id.chronometer);
         mStop = findViewById(R.id.stopTrackingId);
+
+        mChronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
+            @Override
+            public void onChronometerTick(Chronometer chronometer) {
+                long time = SystemClock.elapsedRealtime() - chronometer.getBase();
+                h   = (int)(time /3600000);
+                m = (int)(time - h*3600000)/60000;
+                s= (int)(time - h*3600000- m*60000)/1000 ;
+                t = (h < 10 ? "0"+h: h)+":"+(m < 10 ? "0"+m: m)+":"+ (s < 10 ? "0"+s: s);
+            }
+        });
+
         mChronometer.start();
 
         mStop.setOnClickListener(new View.OnClickListener() {
