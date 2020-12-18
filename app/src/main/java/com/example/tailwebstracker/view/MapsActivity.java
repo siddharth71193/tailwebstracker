@@ -1,7 +1,6 @@
 package com.example.tailwebstracker.view;
 
 import androidx.fragment.app.FragmentActivity;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
@@ -18,7 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
 
-import com.example.tailwebstracker.model.LocalLocation;
+import com.example.tailwebstracker.model.local_location.LocalLocation;
 import com.example.tailwebstracker.service.LocationService;
 import com.example.tailwebstracker.R;
 import com.example.tailwebstracker.utils.Constants;
@@ -34,7 +33,6 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
-import com.google.firebase.FirebaseApp;
 
 import java.util.ArrayList;
 

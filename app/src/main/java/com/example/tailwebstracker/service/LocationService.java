@@ -9,7 +9,7 @@ import android.util.Log;
 
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-import com.example.tailwebstracker.model.LocalLocation;
+import com.example.tailwebstracker.model.local_location.LocalLocation;
 import com.example.tailwebstracker.utils.Constants;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;

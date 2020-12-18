@@ -1,4 +1,4 @@
-package com.example.tailwebstracker.model;
+package com.example.tailwebstracker.model.local_location;
 
 import java.io.Serializable;
 
