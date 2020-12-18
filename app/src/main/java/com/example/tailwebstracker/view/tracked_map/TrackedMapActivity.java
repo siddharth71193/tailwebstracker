@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.example.tailwebstracker.R;
 import com.google.android.gms.maps.CameraUpdate;
@@ -29,6 +31,7 @@ public class TrackedMapActivity extends AppCompatActivity implements OnMapReadyC
     private ArrayList<Double> latList;
     private ArrayList<Double> longList;
     private ArrayList<LatLng> mPolyLinePoints = new ArrayList<>();
+    private ImageView mClose;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,8 @@ public class TrackedMapActivity extends AppCompatActivity implements OnMapReadyC
         setContentView(R.layout.activity_tracked_map);
 
         methodForFragmentSetUp();
+
+        init();
 
         Intent intent = getIntent();
         bundle=intent.getExtras();
@@ -50,6 +55,16 @@ public class TrackedMapActivity extends AppCompatActivity implements OnMapReadyC
             mPolyLinePoints.add(latLng);
         }
 
+    }
+
+    private void init(){
+        mClose = findViewById(R.id.clearback);
+        mClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void plotLatLng(){

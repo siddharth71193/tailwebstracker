@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.example.tailwebstracker.R;
 import com.example.tailwebstracker.adapter.TrackDetailsAdapter;
@@ -18,6 +20,7 @@ public class TrackingHistoryActivity extends AppCompatActivity {
     private TrackingHistoryViewModel trackingHistoryViewModel;
     private RecyclerView recyclerView;
     private TrackDetailsAdapter mAdapter;
+    private ImageView mClose;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +31,15 @@ public class TrackingHistoryActivity extends AppCompatActivity {
 
     private void init(){
         recyclerView = findViewById(R.id.recyclerId);
+        mClose = findViewById(R.id.clearId);
+
+        mClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         trackingHistoryViewModel = ViewModelProviders.of(this).get(TrackingHistoryViewModel.class);
         observeViewModel();
         trackingHistoryViewModel.callGetTrackingData();
