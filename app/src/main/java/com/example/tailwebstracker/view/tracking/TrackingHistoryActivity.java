@@ -1,4 +1,4 @@
-package com.example.tailwebstracker.view;
+package com.example.tailwebstracker.view.tracking;
 
 import androidx.appcompat.app.AppCompatActivity;
 

@@ -22,10 +22,10 @@
             android:exported="true"></service>
 
         <activity
-            android:name=".view.TrackingHistoryActivity"
+            android:name=".view.tracking.TrackingHistoryActivity"
             android:theme="@style/StatusBarThemeSplash" />
         <activity
-            android:name=".view.DashBoardActivity"
+            android:name=".view.dashboard.DashBoardActivity"
             android:theme="@style/StatusBarThemeSplash" />
         <activity
             android:name=".view.MapsActivity"

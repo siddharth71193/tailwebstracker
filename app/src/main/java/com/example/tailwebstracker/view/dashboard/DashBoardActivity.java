@@ -1,4 +1,4 @@
-package com.example.tailwebstracker.view;
+package com.example.tailwebstracker.view.dashboard;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.tailwebstracker.R;
+import com.example.tailwebstracker.view.MapsActivity;
+import com.example.tailwebstracker.view.tracking.TrackingHistoryActivity;
 
 public class DashBoardActivity extends AppCompatActivity {
     private Button mYes;
@@ -34,7 +36,7 @@ public class DashBoardActivity extends AppCompatActivity {
         mTrackingHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(DashBoardActivity.this,TrackingHistoryActivity.class));
+                startActivity(new Intent(DashBoardActivity.this, TrackingHistoryActivity.class));
             }
         });
 

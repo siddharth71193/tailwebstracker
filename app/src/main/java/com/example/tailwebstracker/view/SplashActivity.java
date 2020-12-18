@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.tailwebstracker.R;
+import com.example.tailwebstracker.view.dashboard.DashBoardActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
