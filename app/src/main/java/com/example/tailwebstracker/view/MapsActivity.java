@@ -1,4 +1,4 @@
-package com.example.tailwebstracker;
+package com.example.tailwebstracker.view;
 
 import androidx.fragment.app.FragmentActivity;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -16,6 +16,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
 
+import com.example.tailwebstracker.model.LocalLocation;
+import com.example.tailwebstracker.service.LocationService;
+import com.example.tailwebstracker.R;
+import com.example.tailwebstracker.utils.Constants;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -49,7 +53,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         init();
 
-        startService(new Intent(this,LocationService.class));
+        startService(new Intent(this, LocationService.class));
 
         LocalBroadcastManager.getInstance(getApplicationContext()).registerReceiver(mLocationReceiver,
                 new IntentFilter(Constants.INTENT_FILTERS.LOCATION_BROADCAST));

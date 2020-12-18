@@ -1,4 +1,4 @@
-package com.example.tailwebstracker;
+package com.example.tailwebstracker.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import java.util.Map;
+import com.example.tailwebstracker.R;
 
 public class DashBoardActivity extends AppCompatActivity {
     private Button mYes;

@@ -1,9 +1,11 @@
-package com.example.tailwebstracker;
+package com.example.tailwebstracker.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+
+import com.example.tailwebstracker.R;
 
 public class SplashActivity extends AppCompatActivity {
 

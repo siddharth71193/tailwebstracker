@@ -1,4 +1,4 @@
-package com.example.tailwebstracker;
+package com.example.tailwebstracker.service;
 
 import android.app.Service;
 import android.content.Intent;
@@ -9,6 +9,8 @@ import android.util.Log;
 
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import com.example.tailwebstracker.model.LocalLocation;
+import com.example.tailwebstracker.utils.Constants;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;

@@ -1,4 +1,4 @@
-package com.example.tailwebstracker;
+package com.example.tailwebstracker.model;
 
 import java.io.Serializable;
 

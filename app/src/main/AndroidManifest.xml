@@ -17,18 +17,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TailWebsTracker">
         <service
-            android:name=".LocationService"
+            android:name=".service.LocationService"
             android:enabled="true"
             android:exported="true"></service>
 
         <activity
-            android:name=".TrackingHistoryActivity"
+            android:name=".view.TrackingHistoryActivity"
             android:theme="@style/StatusBarThemeSplash" />
         <activity
-            android:name=".DashBoardActivity"
+            android:name=".view.DashBoardActivity"
             android:theme="@style/StatusBarThemeSplash" />
         <activity
-            android:name=".MapsActivity"
+            android:name=".view.MapsActivity"
             android:theme="@style/StatusBarThemeSplash" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -43,7 +43,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".SplashActivity"
+            android:name=".view.SplashActivity"
             android:label="@string/title_activity_maps"
             android:theme="@style/StatusBarThemeSplash">
             <intent-filter>
