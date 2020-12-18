@@ -1,6 +1,8 @@
 package com.example.tailwebstracker.view;
 
 import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import android.content.BroadcastReceiver;
@@ -32,6 +34,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.firebase.FirebaseApp;
 
 import java.util.ArrayList;
 
@@ -41,6 +44,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private ArrayList<LatLng> mPolyLinePoints = new ArrayList<>();
     private Chronometer mChronometer;
     private Button mStop;
+    private MapsViewModel mapsViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +64,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void init(){
+        mapsViewModel =  ViewModelProviders.of(this).get(MapsViewModel.class);
+
         mChronometer = findViewById(R.id.chronometer);
         mStop = findViewById(R.id.stopTrackingId);
         mChronometer.start();
@@ -69,8 +75,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onClick(View v) {
                 stopChronometer();
                 stopLocationService();
+                saveData();
             }
         });
+    }
+
+    private void saveData(){
+        mapsViewModel.insertToDb(mPolyLinePoints);
     }
 
     private void stopLocationService(){
