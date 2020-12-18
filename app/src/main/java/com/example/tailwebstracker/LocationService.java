@@ -64,4 +64,9 @@ public class LocationService extends Service {
         intent.putExtras(bundle);
         LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent);
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
 }

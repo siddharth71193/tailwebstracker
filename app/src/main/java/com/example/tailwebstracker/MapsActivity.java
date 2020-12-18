@@ -1,6 +1,5 @@
 package com.example.tailwebstracker;
 
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentActivity;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
@@ -10,9 +9,12 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.Chronometer;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -33,6 +35,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private static final String TAG = "MapsActivity";
     private GoogleMap mMap;
     private ArrayList<LatLng> mPolyLinePoints = new ArrayList<>();
+    private Chronometer mChronometer;
+    private Button mStop;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,29 +47,35 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.mapNearBy);
         mapFragment.getMapAsync(this);
 
+        init();
+
         startService(new Intent(this,LocationService.class));
 
         LocalBroadcastManager.getInstance(getApplicationContext()).registerReceiver(mLocationReceiver,
                 new IntentFilter(Constants.INTENT_FILTERS.LOCATION_BROADCAST));
     }
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
+    private void init(){
+        mChronometer = findViewById(R.id.chronometer);
+        mStop = findViewById(R.id.stopTrackingId);
+        mChronometer.start();
+
+        mStop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stopChronometer();
+            }
+        });
+    }
+
+    private void stopChronometer(){
+        mChronometer.setBase(SystemClock.elapsedRealtime());
+        mChronometer.stop();
+    }
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 
     protected BroadcastReceiver mLocationReceiver = new BroadcastReceiver() {
