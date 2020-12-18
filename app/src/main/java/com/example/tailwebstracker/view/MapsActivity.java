@@ -68,8 +68,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v) {
                 stopChronometer();
+                stopLocationService();
             }
         });
+    }
+
+    private void stopLocationService(){
+        stopService(new Intent(this,LocationService.class));
     }
 
     private void stopChronometer(){

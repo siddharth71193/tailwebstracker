@@ -69,6 +69,8 @@ public class LocationService extends Service {
 
     @Override
     public void onDestroy() {
+        LocationServices.getFusedLocationProviderClient(this)
+                .removeLocationUpdates(locationCallback);
         super.onDestroy();
     }
 }
