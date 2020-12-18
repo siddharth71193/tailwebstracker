@@ -37,6 +37,8 @@ public class TrackDetailsAdapter extends RecyclerView.Adapter<TrackDetailsAdapte
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        holder.textViewDate.setText(types.get(position).getDate() + "");
+        holder.textViewTotalTrackedTime.setText(types.get(position).getTotalTime());
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

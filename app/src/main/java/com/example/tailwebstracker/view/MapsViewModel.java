@@ -15,7 +15,11 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class MapsViewModel extends AndroidViewModel {
 
@@ -29,17 +33,17 @@ public class MapsViewModel extends AndroidViewModel {
         dbReference = firebaseFirestore.collection("trackdetails");
     }
 
-    public void insertToDb(ArrayList<LatLng> latLngs){
+    public void insertToDb(ArrayList<LatLng> latLngs) {
         ArrayList<Double> latsList = new ArrayList<>();
         ArrayList<Double> lngList = new ArrayList<>();
         long id = new java.util.Date().getTime();
 
-        for(int i = 0;i < latLngs.size();i++){
+        for (int i = 0; i < latLngs.size(); i++) {
             latsList.add(latLngs.get(i).latitude);
             lngList.add(latLngs.get(i).longitude);
         }
 
-        TrackDetails trackDetails = new TrackDetails(id,latsList,lngList);
+        TrackDetails trackDetails = new TrackDetails(id, MapsActivity.t, latsList, lngList, getCurrentDate());
 
         dbReference.add(trackDetails).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
@@ -52,5 +56,14 @@ public class MapsViewModel extends AndroidViewModel {
                 Toast.makeText(getApplication(), e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private String getCurrentDate() {
+        Date c = Calendar.getInstance().getTime();
+        System.out.println("Current time => " + c);
+
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault());
+        String formattedDate = df.format(c);
+        return formattedDate;
     }
 }
