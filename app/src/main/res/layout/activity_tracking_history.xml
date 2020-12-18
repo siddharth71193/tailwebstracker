@@ -4,48 +4,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="60sp"
-        android:id="@+id/toolbar">
+        android:layout_height="60sp">
+
         <ImageView
+            android:id="@+id/clearId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_black_clear"
-            android:id="@+id/clearId"/>
+            android:src="@drawable/ic_black_clear" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Tracking History"
             android:gravity="center"
+            android:text="Tracking History"
             android:textColor="#000000"
-            android:textSize="18sp"
-            />
+            android:textSize="18sp" />
     </androidx.appcompat.widget.Toolbar>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/grey"
-        android:layout_marginBottom="20sp">
+        android:layout_marginBottom="20sp"
+        android:background="@color/grey">
 
     </View>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:id="@+id/recyclerId"/>
+        android:visibility="visible" />
+
     <ImageView
-        android:layout_marginTop="60sp"
-        android:layout_marginBottom="20sp"
+        android:id="@+id/nodatafoundId"
         android:layout_width="400sp"
         android:layout_height="400sp"
-        android:visibility="gone"
         android:layout_gravity="center_horizontal"
-        android:id="@+id/nodatafoundId"
-        android:src="@drawable/nodata"/>
+        android:layout_marginTop="60sp"
+        android:layout_marginBottom="20sp"
+        android:src="@drawable/nodata"
+        android:visibility="gone" />
 
 </LinearLayout>
