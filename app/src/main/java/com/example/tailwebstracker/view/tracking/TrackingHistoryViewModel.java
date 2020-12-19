@@ -14,6 +14,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TrackingHistoryViewModel extends AndroidViewModel {
@@ -44,6 +45,7 @@ public class TrackingHistoryViewModel extends AndroidViewModel {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         if (queryDocumentSnapshots.isEmpty()) {
+                            trackDetails.setValue(new ArrayList<>());
                         } else {
                             List<TrackDetails> types = queryDocumentSnapshots.toObjects(TrackDetails.class);
                             trackDetails.setValue(types);

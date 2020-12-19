@@ -21,6 +21,7 @@ public class TrackingHistoryActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private TrackDetailsAdapter mAdapter;
     private ImageView mClose;
+    private ImageView mNoNetworkLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,7 @@ public class TrackingHistoryActivity extends AppCompatActivity {
     private void init(){
         recyclerView = findViewById(R.id.recyclerId);
         mClose = findViewById(R.id.clearId);
+        mNoNetworkLayout = findViewById(R.id.nodatafoundId);
 
         mClose.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,7 +51,14 @@ public class TrackingHistoryActivity extends AppCompatActivity {
         trackingHistoryViewModel.getTrackDetails().observe(this, new Observer<List<TrackDetails>>() {
             @Override
             public void onChanged(List<TrackDetails> trackDetails) {
-                setUpAdapter(trackDetails);
+                if(trackDetails.size() > 0) {
+                    recyclerView.setVisibility(View.VISIBLE);
+                    mNoNetworkLayout.setVisibility(View.GONE);
+                    setUpAdapter(trackDetails);
+                } else {
+                    mNoNetworkLayout.setVisibility(View.VISIBLE);
+                    recyclerView.setVisibility(View.GONE);
+                }
             }
         });
     }
