@@ -1,5 +1,6 @@
 package com.example.tailwebstracker.view;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -20,6 +21,7 @@ import android.widget.Chronometer;
 import com.example.tailwebstracker.model.local_location.LocalLocation;
 import com.example.tailwebstracker.service.LocationService;
 import com.example.tailwebstracker.R;
+import com.example.tailwebstracker.utils.CommonUtils;
 import com.example.tailwebstracker.utils.Constants;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -37,7 +39,7 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
     private static final String TAG = "MapsActivity";
     private GoogleMap mMap;
     private ArrayList<LatLng> mPolyLinePoints = new ArrayList<>();
@@ -149,24 +151,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             b.include(mPolyLinePoints.get(i));
         }
         LatLngBounds bounds = b.build();
-        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, Math.min(getHeight(),getWidth()),Math.min(getHeight(),getWidth()),100);
+        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, Math.min(CommonUtils.getHeight(this),CommonUtils.getWidth(this)),Math.min(CommonUtils.getHeight(this),CommonUtils.getWidth(this)),100);
         mMap.animateCamera(cu);
-    }
-
-    private int getWidth(){
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        int height = displayMetrics.heightPixels;
-        int width = displayMetrics.widthPixels;
-        return width;
-    }
-
-    private int getHeight(){
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        int height = displayMetrics.heightPixels;
-        int width = displayMetrics.widthPixels;
-        return height;
     }
 
     protected Marker createMarker(double latitude, double longitude, String title) {  //create marker according to change location
