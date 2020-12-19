@@ -99,7 +99,9 @@ public class TrackedMapActivity extends AppCompatActivity implements OnMapReadyC
             b.include(mPolyLinePoints.get(i));
         }
         LatLngBounds bounds = b.build();
-        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, Math.min(CommonUtils.getHeight(this),CommonUtils.getWidth(this)),Math.min(CommonUtils.getHeight(this),CommonUtils.getWidth(this)),100);
+        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds,
+                Math.min(CommonUtils.getHeight(this),CommonUtils.getWidth(this)),
+                Math.min(CommonUtils.getHeight(this),CommonUtils.getWidth(this)),100);
         mMap.animateCamera(cu);
     }
 
