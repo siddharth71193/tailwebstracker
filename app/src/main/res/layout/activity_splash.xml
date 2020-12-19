@@ -13,13 +13,13 @@
     <ImageView
         android:id="@+id/earthId"
         android:layout_width="fill_parent"
-        android:layout_height="380sp"
+        android:layout_height="380dp"
         android:background="@drawable/earth_img" />
 
     <ImageView
         android:id="@+id/univLogo"
-        android:layout_width="120sp"
-        android:layout_height="120sp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_alignTop="@+id/earthId"
         android:layout_alignBottom="@+id/earthId"
         android:layout_alignParentStart="true"
