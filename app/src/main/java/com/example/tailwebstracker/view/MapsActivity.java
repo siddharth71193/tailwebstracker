@@ -2,6 +2,7 @@ package com.example.tailwebstracker.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
@@ -70,7 +71,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private void init(){
         mapsViewModel =  ViewModelProviders.of(this).get(MapsViewModel.class);
-
+        observeViewModel();
         mChronometer = findViewById(R.id.chronometer);
         mStop = findViewById(R.id.stopTrackingId);
 
@@ -162,5 +163,16 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 .anchor(0.5f, 0.5f)
                 .title(title)
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)));
+    }
+
+    private void observeViewModel(){
+        mapsViewModel.getHasSuccessfullyCompleted().observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if(aBoolean){
+                    finish();
+                }
+            }
+        });
     }
 }

@@ -5,6 +5,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.MutableLiveData;
 
 import com.example.tailwebstracker.model.location_details.TrackDetails;
 import com.example.tailwebstracker.utils.CommonUtils;
@@ -26,12 +27,17 @@ public class MapsViewModel extends AndroidViewModel {
 
     private FirebaseFirestore firebaseFirestore;
     private CollectionReference dbReference;
+    private MutableLiveData<Boolean> hasSuccessfullyCompleted = new MutableLiveData<>();
 
     public MapsViewModel(@NonNull Application application) {
         super(application);
         FirebaseApp.initializeApp(application);
         firebaseFirestore = FirebaseFirestore.getInstance();
         dbReference = firebaseFirestore.collection("trackdetails");
+    }
+
+    public MutableLiveData<Boolean> getHasSuccessfullyCompleted(){
+        return hasSuccessfullyCompleted;
     }
 
     public void insertToDb(ArrayList<LatLng> latLngs) {
@@ -50,11 +56,13 @@ public class MapsViewModel extends AndroidViewModel {
             @Override
             public void onSuccess(DocumentReference documentReference) {
                 Toast.makeText(getApplication(), "Successfully added", Toast.LENGTH_SHORT).show();
+                hasSuccessfullyCompleted.setValue(true);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(getApplication(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                hasSuccessfullyCompleted.setValue(false);
             }
         });
     }
