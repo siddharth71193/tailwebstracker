@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 
 import com.example.tailwebstracker.model.location_details.TrackDetails;
+import com.example.tailwebstracker.utils.CommonUtils;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -43,7 +44,7 @@ public class MapsViewModel extends AndroidViewModel {
             lngList.add(latLngs.get(i).longitude);
         }
 
-        TrackDetails trackDetails = new TrackDetails(id, MapsActivity.t, latsList, lngList, getCurrentDate());
+        TrackDetails trackDetails = new TrackDetails(id, MapsActivity.t, latsList, lngList, CommonUtils.getCurrentDate());
 
         dbReference.add(trackDetails).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
@@ -58,12 +59,4 @@ public class MapsViewModel extends AndroidViewModel {
         });
     }
 
-    private String getCurrentDate() {
-        Date c = Calendar.getInstance().getTime();
-        System.out.println("Current time => " + c);
-
-        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault());
-        String formattedDate = df.format(c);
-        return formattedDate;
-    }
 }
